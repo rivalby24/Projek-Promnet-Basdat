@@ -9,17 +9,11 @@ export default AuthContext;
 
 export const AuthProvider = ({ children }) => {
     const [authTokens, setAuthTokens] = useState(() =>
-        localStorage.getItem("authTokens")
-            ? JSON.parse(localStorage.getItem("authTokens"))
-            : null
+        localStorage.getItem("authTokens") ? JSON.parse(localStorage.getItem("authTokens")) : null
     );
-
     const [user, setUser] = useState(() =>
-        localStorage.getItem("authTokens")
-            ? jwtDecode(localStorage.getItem("authTokens"))
-            : null
+        localStorage.getItem("authTokens") ? jwtDecode(localStorage.getItem("authTokens")) : null
     );
-
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
@@ -39,9 +33,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await fetch("http://127.0.0.1:8000/api/token/", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
             });
 
@@ -54,33 +46,45 @@ export const AuthProvider = ({ children }) => {
                 navigate("/");
                 showAlert("Login Successful", "success");
             } else {
-                showAlert("Invalid username or password", "error");
+                showAlert("Invalid Email or password", "error");
             }
         } catch (error) {
             showAlert("An error occurred during login", "error");
         }
     };
 
-    const registerUser = async (email, username, password, password2) => {
+    const registerUser = async (full_name, username, email, nim, program_studi, semester, password, password2) => {
         try {
             const response = await fetch("http://127.0.0.1:8000/api/register/", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email, username, password, password2 }),
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    full_name,
+                    username,
+                    email,
+                    nim,
+                    program_studi,
+                    semester,
+                    password,
+                    password2,
+                }),
             });
-
+    
+            const data = await response.json();
+            console.log("Response data:", data);
+    
             if (response.status === 201) {
                 navigate("/login");
                 showAlert("Registration Successful. Please login.", "success");
             } else {
-                showAlert("An error occurred during registration", "error");
+                showAlert(data.detail || "An error occurred during registration", "error");
             }
         } catch (error) {
+            console.error("Error during registration:", error);
             showAlert("An error occurred during registration", "error");
         }
     };
+    
 
     const logoutUser = () => {
         setAuthTokens(null);
@@ -90,12 +94,45 @@ export const AuthProvider = ({ children }) => {
         showAlert("You have been logged out", "success");
     };
 
+    const refreshAuthToken = async () => {
+        if (!authTokens?.refresh) return;
+
+        try {
+            const response = await fetch("http://127.0.0.1:8000/api/token/refresh/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ refresh: authTokens.refresh }),
+            });
+
+            const data = await response.json();
+
+            if (response.status === 200) {
+                setAuthTokens(data);
+                setUser(jwtDecode(data.access));
+                localStorage.setItem("authTokens", JSON.stringify(data));
+            } else {
+                logoutUser();
+            }
+        } catch (error) {
+            logoutUser();
+        }
+    };
+
     useEffect(() => {
         if (authTokens) {
             setUser(jwtDecode(authTokens.access));
         }
         setLoading(false);
     }, [authTokens]);
+
+    useEffect(() => {
+        if (user && user.exp) {
+            const expiryTime = user.exp * 1000;
+            if (Date.now() >= expiryTime - 60000) { // Refresh 1 minute before expiration
+                refreshAuthToken();
+            }
+        }
+    }, [user]);
 
     const contextData = {
         user,
@@ -112,7 +149,4 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-// Custom hook for consuming AuthContext
-export const useAuth = () => {
-    return useContext(AuthContext);
-};
+export const useAuth = () => useContext(AuthContext);

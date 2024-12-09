@@ -49,7 +49,7 @@ function Loginpage() {
                 id="form2Example17"
                 className="form-control form-control-lg"
                 name="email"
-                placeholder="Email address"
+                placeholder="Email"
                 required
               />
             </div>
