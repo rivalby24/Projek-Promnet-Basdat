@@ -8,7 +8,7 @@ import Dashboard from "./pages/dashboard";
 import RegisterPage from "./pages/registerpage";
 import Homepage from "./pages/homepage";
 import Tentang from "./pages/tentang";
-
+import Admindashboard from "./pages/admindashboard";
 function App() {
     return (
         <BrowserRouter>
@@ -19,6 +19,7 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
+                    <Route path="/admindashboard" element={<PrivateRoute element={<Admindashboard />} />} />
                     <Route path="/tentang" element={<Tentang />} />
                 </Routes>
             </AuthProvider>

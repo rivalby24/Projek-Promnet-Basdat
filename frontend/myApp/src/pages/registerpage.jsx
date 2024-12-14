@@ -26,8 +26,8 @@ function Registerpage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-        showAlert("Passwords do not match", "error");
-        return;
+      alert("Passwords do not match.");
+      return;
     }
     registerUser(full_name, username, email, nim, program_studi, semester, password, password2);
 };

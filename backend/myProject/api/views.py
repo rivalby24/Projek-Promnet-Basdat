@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from myApp.models import Profile, User
-from myApp.serializer import UserSerializer, MyTokenObtainPairSerializer, RegisterSerializer
+from api.models import MahasiswaProfile, User
+from api.serializer import UserSerializer, MyTokenObtainPairSerializer, RegisterSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics, status, serializers
@@ -29,7 +29,7 @@ def dashboard(request):
     return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
 def some_function():
-    from myApp import urls  # Hanya impor saat dibutuhkan
+    from api import urls  # Hanya impor saat dibutuhkan
 
 @api_view(['GET'])
 def getRoutes(request):

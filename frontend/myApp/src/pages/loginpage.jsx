@@ -35,7 +35,7 @@ function Loginpage() {
                 className="fas fa-cubes fa-2x me-3"
                 style={{ color: "#ff6219" }}
               />
-              <span className="h2 fw-bold mb-0">Welcome back 👋</span>
+              <span className="h2 fw-bold mb-0">Welcome back</span>
             </div>
             <h5
               className="fw-normal mb-3 pb-3"

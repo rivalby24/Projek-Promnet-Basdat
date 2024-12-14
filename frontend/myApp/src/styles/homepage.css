@@ -1,0 +1,198 @@
+.main-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 80vh;
+    background-color: #d3d3d3;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+.search-box {
+    text-align: center;
+}
+.search-box h2 {
+    margin-bottom: 15px;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.search-bar input {
+    padding: 10px;
+    font-size: 14px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.menu_dalam {
+    padding: 100px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.search-bar button {
+    padding: 10px;
+    background-color: #424242;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.search-bar button img {
+    width: 16px;
+    height: 16px;
+    filter: invert(1);
+}
+.search-bar button:hover {
+    background-color: #616161;
+}
+.description {
+    text-align: center;
+}
+.description h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.description p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    background-color: #e0e0e0;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+.achievements {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.achievement-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 30%;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.achievement-card img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+.achievement-card h3 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+.achievement-card p {
+    margin: 5px 0;
+    color: #666;
+}
+.view-more {
+    text-align: center;
+    margin-top: 10px;
+}
+.view-more a {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+}
+.statistics {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.statistics h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+.stat-cards {
+    display: flex;
+    justify-content: space-between;
+}
+.stat-card {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 23%;
+    text-align: center;
+    
+}
+.stat-card h3 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+.stat-card p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+}
+footer {
+    background-color: #666666;
+    color: white;
+    padding: 20px 50px;
+}
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.logo-placeholder {
+    width: 80px;
+    height: 40px;
+    background-color: #cccccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.footer-logo p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+.footer-contact {
+    text-align: left;
+}
+.footer-contact h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.footer-contact ul {
+    list-style: none;
+    padding: 0;
+    font-size: 14px;
+}
+.footer-contact li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}

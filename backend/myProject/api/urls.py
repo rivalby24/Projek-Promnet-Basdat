@@ -1,6 +1,6 @@
 from rest_framework_simplejwt.views import TokenRefreshView
 from django.urls import path
-from myApp import views
+from api import views
 
 urlpatterns = [
     path("token/", views.MyTokenObtainPairView.as_view(), name="token"),

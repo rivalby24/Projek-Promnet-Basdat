@@ -36,24 +36,48 @@ export const AuthProvider = ({ children }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
             });
-
+    
             const data = await response.json();
-
+    
             if (response.status === 200) {
                 setAuthTokens(data);
-                setUser(jwtDecode(data.access));
+                const decodedUser = jwtDecode(data.access);
+                setUser(decodedUser);
                 localStorage.setItem("authTokens", JSON.stringify(data));
-                navigate("/");
+    
+                // Navigasi berdasarkan program_studi (role)
+                if (decodedUser.program_studi === "Admin") {
+                    navigate("/admindashboard");
+                } else if (
+                    decodedUser.program_studi === "Pendidikan Ilmu Komputer" || 
+                    decodedUser.program_studi === "Ilmu Komputer"
+                ) {
+                    navigate("/dashboard");
+                } else {
+                    navigate("/");
+                }
+    
                 showAlert("Login Successful", "success");
             } else {
-                showAlert("Invalid Email or password", "error");
+                showAlert("Invalid Email or Password", "error");
             }
         } catch (error) {
+            console.error("Error during login:", error);
             showAlert("An error occurred during login", "error");
         }
     };
+    
 
     const registerUser = async (full_name, username, email, nim, program_studi, semester, password, password2) => {
+        if (!email.endsWith("@upi.edu")) {
+            showAlert("Email harus menggunakan domain @upi.edu.", "error");
+            return;
+        }
+
+        if (nim.length !== 7 || isNaN(nim)) {
+            showAlert("NIM harus terdiri dari 7 angka.", "error");
+            return;
+          }
         try {
             const response = await fetch("http://127.0.0.1:8000/api/register/", {
                 method: "POST",
