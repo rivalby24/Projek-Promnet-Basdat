@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import "../index.css";
+import "../styles/loginpage.css"; // Pastikan ada file CSS yang sesuai
 
 function Loginpage() {
   const { loginUser } = useContext(AuthContext);
@@ -13,80 +13,57 @@ function Loginpage() {
 
     email.length > 0 && loginUser(email, password);
 
-    console.log(email);
-    console.log(password);
+    console.log(email, password);
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        backgroundColor: "#9A616D",
-      }}
-    >
-      <div className="card" style={{ width: "400px", borderRadius: "1rem" }}>
-        <div className="card-body p-4 p-lg-5 text-black">
-          <form onSubmit={handleSubmit}>
-            <div className="d-flex align-items-center mb-3 pb-1">
-              <i
-                className="fas fa-cubes fa-2x me-3"
-                style={{ color: "#ff6219" }}
-              />
-              <span className="h2 fw-bold mb-0">Welcome back</span>
-            </div>
-            <h5
-              className="fw-normal mb-3 pb-3"
-              style={{ letterSpacing: 1 }}
-            >
-              Sign into your account
-            </h5>
-            <div className="form-outline mb-4">
-              <input
-                type="email"
-                id="form2Example17"
-                className="form-control form-control-lg"
-                name="email"
-                placeholder="Email"
-                required
-              />
-            </div>
-            <div className="form-outline mb-4">
-              <input
-                type="password"
-                id="form2Example27"
-                className="form-control form-control-lg"
-                name="password"
-                placeholder="Password"
-                required
-              />
-            </div>
-            <div className="pt-1 mb-4">
-              <button
-                className="btn btn-dark btn-lg btn-block w-100"
-                type="submit"
-              >
-                Login
-              </button>
-            </div>
-            <a className="small text-muted" href="#!">
-              Forgot password?
-            </a>
-            <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
-              Don't have an account?{" "}
-              <Link to="/register" style={{ color: "#393f81" }}>
-                Register Now
+    <div className="login-container">
+      {/* Bagian Kiri: Form Login */}
+      <div className="login-left">
+        <h2 className="title">MASUK</h2>
+        <form onSubmit={handleSubmit} className="form">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Masukkan Email"
+            required
+          />
+
+          <label>Kata Sandi</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Masukkan Kata Sandi"
+            required
+          />
+
+          <button type="submit" className="login-button">
+            Masuk
+          </button>
+
+          <div className="options">
+            <Link to="/forgot-password" className="forgot-password">
+              Lupa kata sandi?
+            </Link>
+            <span className="register">
+              Belum punya akun?{" "}
+              <Link to="/register">
+                <strong>Daftar</strong>
               </Link>
-            </p>
-            <a href="#!" className="small text-muted">
-              Terms of use.
-            </a>
-            <a href="#!" className="small text-muted ms-2">
-              Privacy policy
-            </a>
-          </form>
+            </span>
+          </div>
+        </form>
+      </div>
+
+      {/* Bagian Kanan: Informasi */}
+      <div className="login-right">
+        <div className="image-placeholder">
+          <span>Gambar</span>
+        </div>
+        <div className="info">
+          <h3>Sistem Informasi Profil dan Talenta Mahasiswa</h3>
+          <p>Wadah untuk bidang prestasi mahasiswa</p>
         </div>
       </div>
     </div>

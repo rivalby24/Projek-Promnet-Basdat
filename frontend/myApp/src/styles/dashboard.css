@@ -1,0 +1,126 @@
+/* Global */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  .dashboard-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background-color: #6c757d;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo {
+    margin: 20px 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .menu-item {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #495057;
+  }
+  
+  .menu-item.active {
+    background-color: #495057;
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Chart Section */
+  .chart-section {
+    background-color: #e9ecef;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .chart-section h3 {
+    margin: 0;
+    text-align: center;
+  }
+  
+  .chart-subtitle {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  
+  .chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 200px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  .chart-bar {
+    width: 30px;
+    background-color: black;
+  }
+  
+  .chart-labels {
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.9rem;
+  }
+  
+  /* Info Section */
+  .info-section {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .card {
+    flex: 1;
+    padding: 20px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+  }
+  
+  .prestasi-card ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .prestasi-card li {
+    margin-bottom: 10px;
+  }
+  
+  .histori-card {
+    text-align: center;
+  }
+  
+  .histori-card p {
+    font-size: 2rem;
+    color: #333;
+  }
+  

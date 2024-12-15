@@ -6,6 +6,7 @@ function Dashboard() {
   const [res, setRes] = useState('');
   const api = useAxios();
   const token = localStorage.getItem('authTokens');
+  const [programstudi, setProgramStudi] = useState(null);
 
   let nim, username, program_studi, full_name, semester, image;
 
@@ -17,6 +18,17 @@ function Dashboard() {
     program_studi = decode.program_studi;
     semester = decode.semester;
     image = decode.image;
+  }
+  useEffect(() => {
+    if (token) {
+      const decode = jwtDecode(token);
+      setProgramStudi(decode.program_studi);
+    }
+  }, [token]);
+
+
+  if (programstudi==="admin") {
+    return <Navigate to="/admindashboard" />;
   }
 
   useEffect(() => {
