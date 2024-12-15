@@ -65,6 +65,7 @@ export const AuthProvider = ({ children }) => {
             console.error("Error during login:", error);
             showAlert("An error occurred during login", "error");
         }
+        setUser(decodedToken);
     };
     
 

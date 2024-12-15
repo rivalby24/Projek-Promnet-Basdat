@@ -2,8 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.core.validators import MinValueValidator
+from django.utils.timezone import now
+from django.conf import settings
 
-# Custom User Model
 class User(AbstractUser):
     PROGRAM_STUDI_CHOICES = [
         ('Pendidikan Ilmu Komputer', 'Pendidikan Ilmu Komputer'),
@@ -24,17 +25,14 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
 
-
-# Mahasiswa Profile Model
 class MahasiswaProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    
     verified = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.user.full_name} ({self.user.email})"
 
-
-# Signal to Automatically Create MahasiswaProfile
 def create_user_profile(sender, instance, created, **kwargs):
     if created and not hasattr(instance, 'profile'):
         MahasiswaProfile.objects.create(user=instance)

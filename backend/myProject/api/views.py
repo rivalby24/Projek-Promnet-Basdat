@@ -20,10 +20,10 @@ class RegisterView(generics.CreateAPIView):
 @permission_classes([IsAuthenticated])
 def dashboard(request):
     if request.method == "GET":
-        response = f"Selamat datang kembali, {request.user}"
+        response = f"Selamat datang kembali, {request.user.full_name}"
         return Response({'response': response}, status=status.HTTP_200_OK)
     elif request.method == "POST":
-        response = f"Selamat datang kembali, {request.user}"
+        response = f"Selamat datang kembali, {request.user.full_name}"
         return Response({'response': response}, status=status.HTTP_200_OK)
     
     return Response({}, status=status.HTTP_400_BAD_REQUEST)

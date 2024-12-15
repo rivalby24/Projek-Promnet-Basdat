@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom"; // Import Navigate untuk redirection
 import AuthContext from "../context/AuthContext";
 import "../styles/loginpage.css"; // Pastikan ada file CSS yang sesuai
 
 function Loginpage() {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, user } = useContext(AuthContext); // Ambil user dari AuthContext
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,6 +15,16 @@ function Loginpage() {
 
     console.log(email, password);
   };
+
+  // Jika user sudah login, redirect ke halaman lain
+  if (user) {
+    if (user.program_studi === "Admin") {
+      return <Navigate to="/admindashboard" replace />;
+    } else {
+      return <Navigate to="/dashboard" replace />;
+    }
+  }
+  
 
   return (
     <div className="login-container">
