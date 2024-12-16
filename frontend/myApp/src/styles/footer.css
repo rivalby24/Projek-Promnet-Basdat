@@ -1,0 +1,73 @@
+/* Footer Style */
+footer {
+    bottom: 0; /* Melekat di bagian bawah */
+    left: 0; /* Mulai dari sisi kiri */
+    width: 100%; /* Melebar penuh */
+    background-color: #a35a37; /* Warna coklat */
+    color: #ffffff; /* Warna teks */
+    padding: 20px 50px; /* Padding atas-bawah dan kiri-kanan */
+    font-family: Arial, sans-serif;
+    z-index: 1000; /* Pastikan footer muncul di atas konten */
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between; /* Antar elemen kiri dan kanan */
+    align-items: center;
+    max-width: 1200px; /* Lebar maksimal konten */
+    margin: 0 auto; /* Tengah secara horizontal */
+  }
+  
+  /* Footer Logo */
+  .footer-logo h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .footer-logo .logo-highlight {
+    color: #f39135; /* Warna oranye */
+  }
+  
+  .footer-logo p {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  /* Footer Kontak */
+  .footer-contact {
+    text-align: left;
+  }
+  
+  .footer-contact h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.3rem;
+  }
+  
+  .footer-contact ul {
+    list-style: none; /* Hilangkan bullet list */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-contact li {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  /* Tambahan: Pastikan konten utama tidak tertutup footer */
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Tinggi minimal layar */
+  }
+  
+  main {
+    flex: 1; /* Konten utama fleksibel */
+    padding-bottom: 120px; /* Jarak aman agar konten tidak tertutupi footer */
+  }
+  

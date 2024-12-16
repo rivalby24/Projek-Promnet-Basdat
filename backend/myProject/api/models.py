@@ -33,7 +33,6 @@ class User(AbstractUser):
     fakultas = models.ForeignKey(Fakultas, on_delete=models.SET_NULL, null=True, blank=True, related_name='users')
     program_studi = models.ForeignKey(ProgramStudi, on_delete=models.SET_NULL, null=True, blank=True, related_name='users')
     role = models.CharField(max_length=50, choices=ROLE_CHOICES, default='')
-    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['full_name']

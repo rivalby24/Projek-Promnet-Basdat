@@ -2,17 +2,19 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 80vh;
-    background-color: #d3d3d3;
-    padding: 0 20px;
+    height: 100vh;
+    background-color: #F4B779;
+    padding: 20px;
     box-sizing: border-box;
     border-radius: 20px;
 }
+
 .search-box {
     text-align: center;
 }
 .search-box h2 {
     margin-bottom: 15px;
+    font-weight: bold;
 }
 .search-bar {
     display: flex;
@@ -30,14 +32,14 @@
 .menu_dalam {
     padding: 100px;
     background-color: #ffffff;
-    border: 1px solid #ddd;
     border-radius: 10px;
     margin-top: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .search-bar button {
     padding: 10px;
-    background-color: #424242;
+    background-color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -48,13 +50,14 @@
     filter: invert(1);
 }
 .search-bar button:hover {
-    background-color: #616161;
+    background-color: #ffffffa6;
 }
 .description {
     text-align: center;
 }
 .description h1 {
     font-size: 48px;
+    font-weight: bolder;
     margin-bottom: 10px;
 }
 
@@ -64,17 +67,17 @@
 }
 .container {
     max-width: 1200px;
-    margin: 0 auto;
     padding: 20px;
 }
 
 .header {
-    background-color: #e0e0e0;
-    padding: 20px;
+    background-color: #F4B779;
+    padding: 70px;
     text-align: center;
     border-radius: 10px;
 }
 .header h1 {
+    font-weight: bold;
     margin: 0;
     font-size: 24px;
 }
@@ -83,14 +86,13 @@
     justify-content: space-between;
     margin-top: 20px;
 }
+
 .achievement-card {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
+    background-color: #8D643A;
     border-radius: 10px;
     width: 30%;
     text-align: center;
     padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 .achievement-card img {
     border-radius: 50%;
@@ -99,12 +101,14 @@
     margin-bottom: 10px;
 }
 .achievement-card h3 {
+    font-weight: bold;
     margin: 10px 0;
     font-size: 18px;
+    color: #fff;
 }
 .achievement-card p {
     margin: 5px 0;
-    color: #666;
+    color: #fff;
 }
 .view-more {
     text-align: center;
@@ -112,30 +116,33 @@
 }
 .view-more a {
     text-decoration: none;
-    color: #007BFF;
+    color: #fff;
     font-weight: bold;
 }
 .statistics {
-    background-color: #ffffff;
+    background-color: #F4B779;
     border: 1px solid #ddd;
     border-radius: 10px;
     margin-top: 20px;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 .statistics h2 {
     margin-bottom: 20px;
     font-size: 20px;
     text-align: center;
+    color: #fff;
 }
+
 .stat-cards {
     display: flex;
     justify-content: space-between;
 }
 .stat-card {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    background-color: #8D643A;
     border-radius: 10px;
+    margin: 10px;
     width: 23%;
     text-align: center;
     
@@ -143,12 +150,14 @@
 .stat-card h3 {
     margin: 10px 0;
     font-size: 18px;
+    color: #fff;
 }
 .stat-card p {
     margin: 5px 0;
     font-size: 16px;
-    color: #555;
+    color: #fff;
 }
+
 footer {
     background-color: #666666;
     color: white;
@@ -196,3 +205,46 @@ footer {
     margin-bottom: 10px;
     line-height: 1.5;
 }
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #a35a37; /* Warna coklat */
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    width: 100%;
+  }
+  
+  .footer-logo h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .footer-logo .logo-highlight {
+    color: #f39135; /* Warna oranye sesuai gambar */
+  }
+  
+  .footer-logo p {
+    margin-top: 5px;
+    font-size: 0.9rem;
+  }
+  
+  .footer-contact h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.3rem;
+    font-weight: normal;
+  }
+  
+  .footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-contact li {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  

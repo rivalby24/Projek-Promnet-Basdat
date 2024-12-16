@@ -1,0 +1,27 @@
+.contact-box h2 {
+    font-family: 'Bahnscrift', sans-serif;
+    font-weight: bold;
+}
+
+.contact-tab {
+    display: flex;
+    justify-content: center; /* Mengatur konten agar berada di tengah secara horizontal */
+    align-items: center; /* Mengatur konten agar berada di tengah secara vertikal */
+    height: 100vh; /* Mengatur tinggi untuk memposisikan di tengah viewport */
+    padding: 20px; /* Padding di luar kotak */
+  }
+
+.contact-box {
+    background-color: white; /* Warna latar belakang putih */
+    padding: 20px; /* Padding di dalam kotak */
+    border-radius: 10px; /* Sudut melengkung */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bayangan untuk efek kedalaman */
+    width: calc(100% - 40px); /* Lebar 100% dikurangi padding horizontal (20px di kiri dan kanan) */
+    max-width: 800px; /* Lebar maksimum kotak */
+    text-align: center; /* Rata tengah untuk teks */
+  }
+  
+.contact-info {
+    margin-top: 20px; /* Jarak antara judul dan informasi kontak */
+    text-align: center; /* Rata kiri untuk teks dalam informasi kontak */
+  }

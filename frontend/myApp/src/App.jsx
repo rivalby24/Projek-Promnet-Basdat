@@ -9,6 +9,8 @@ import AdminDashboard from "./pages/admindashboard"; // Pisahkan admin dashboard
 import RegisterPage from "./pages/registerpage";
 import Homepage from "./pages/homepage";
 import Tentang from "./pages/tentang";
+import Footer from "./components/footer";
+import Kontak from "./pages/kontak";
 
 function App() {
     return (
@@ -21,7 +23,7 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/tentang" element={<Tentang />} />
-
+                    <Route path="/kontak" element={<Kontak />} />
                     {/* Rute Private */}
                     <Route
                         path="/dashboard"
@@ -42,6 +44,7 @@ function App() {
                         }
                     />
                 </Routes>
+                <Footer />
             </AuthProvider>
         </BrowserRouter>
     );

@@ -1,0 +1,102 @@
+/* Navbar Container */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #a35a37; /* Warna coklat */
+    padding: 10px 20px;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+  
+  /* Logo Styling */
+  .logo-text {
+    text-decoration: none;
+    color: #f7931e;
+  }
+  
+  .logo-subtext {
+    display: block;
+    font-size: 0.8rem;
+    color: #ffffff;
+  }
+  
+  /* Navbar Links */
+  .navbar-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-menu li a,
+  .navbar-menu li span {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  
+  .navbar-menu li a:hover,
+  .navbar-menu li span:hover {
+    color: #f7931e; /* Warna orange saat hover */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navbar-links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    .navbar-menu {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  
+
+  .logo-image {
+    width: 50px; /* Sesuaikan ukuran logo */
+    height: auto;
+    margin-right: 10px; /* Jarak antara logo dan teks */
+    vertical-align: middle;
+  }
+  
+  .logo-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f7931e; /* Warna judul */
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .logo-subtext {
+    font-size: 0.8rem;
+    color: #ffffff; /* Warna subteks */
+    display: block; /* Membuat teks berada di bawah */
+  }
+  
+  .navbar-logo img{
+    width: 200px;
+    margin: 10px;
+  }

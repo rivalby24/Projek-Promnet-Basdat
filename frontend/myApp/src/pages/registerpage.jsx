@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import "../styles/registerpage.css";
+import Medali from "../assets/Medal.png";
 
 function Registerpage() {
   const [full_name, setFullName] = useState("");
@@ -56,7 +57,9 @@ function Registerpage() {
     <div className="register-container">
       {/* Left Section */}
       <div className="register-left">
-        <div className="register-image">Gambar</div>
+        <div className="register-image">
+          <img src={Medali} alt="" />
+        </div>
         <h2>Sistem Informasi Profil dan Talenta Mahasiswa</h2>
         <p>Wadah untuk bidang prestasi mahasiswa</p>
       </div>
@@ -127,8 +130,6 @@ function Registerpage() {
               placeholder="Semester"
               onChange={(e) => setSemester(e.target.value)}
               min="1"
-              disabled={role === "Alumni"}  // Disable semester input if Alumni is selected
-              required
             />
           </div>
 

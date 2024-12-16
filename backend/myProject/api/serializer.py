@@ -31,8 +31,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['role'] = user.role
         token['nim'] = user.nim
         # Serialize related fields to avoid non-serializable objects in the token
-        token['fakultas'] = user.fakultas.id if user.fakultas else None
-        token['program_studi'] = user.program_studi.id if user.program_studi else None
+        token['fakultas'] = user.fakultas.nama
+        token['program_studi'] = user.program_studi.nama
         token['semester'] = user.semester
         token['verified'] = getattr(user, 'verified', False)  # Safely handle missing fields
 
@@ -65,3 +65,14 @@ class RegisterSerializer(serializers.ModelSerializer):
             password=validated_data['password'],
         )
         return user
+
+def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        
+        # Get fakultas and program_studi names, if they are foreign keys
+        if instance.fakultas:
+            representation['fakultas'] = instance.fakultas.name  # assuming the `name` field holds the name
+        if instance.program_studi:
+            representation['program_studi'] = instance.program_studi.name  # assuming the `name` field holds the name
+        
+        return representation

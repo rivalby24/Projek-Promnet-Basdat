@@ -1,82 +1,88 @@
 import React, { useContext } from "react";
-import { Navigate, Link } from "react-router-dom"; // Import Navigate for redirection
-import AuthContext from "../context/AuthContext"; // AuthContext to manage auth state
-import "../styles/loginpage.css"; // Importing CSS for styling
+import { Navigate, Link } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
+import "../styles/loginpage.css";
+import Medali from "../assets/Medal.png";
 
 function Loginpage() {
-  const { loginUser, user, loading, error } = useContext(AuthContext); // Use context to get login state and error
+  const { loginUser, user, loading, error } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    // Ensure email and password are not empty before attempting login
     if (email.length > 0 && password.length > 0) {
-      loginUser(email, password); // Call loginUser to handle authentication
+      loginUser(email, password);
     }
   };
 
-  // If user is already logged in, navigate to the appropriate dashboard based on their role
+  // Redirect if user is already logged in
   if (user) {
-    if (user.role === "Admin") {
-      return <Navigate to="/admindashboard" replace />; // Admin redirected to admin dashboard
-    } else if (user.role === "Mahasiswa") {
-      return <Navigate to="/dashboard" replace />; // Mahasiswa (student) redirected to student dashboard
-    } else if (user.role === "Alumni") {
-      return <Navigate to="/dashboard" replace />; // Alumni redirected to alumni dashboard
-    } else {
-      return <Navigate to="/" replace />; // Default route if no matching role
-    }
+    if (user.role === "Admin") return <Navigate to="/admindashboard" replace />;
+    if (user.role === "Mahasiswa" || user.role === "Alumni")
+      return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return (
     <div className="login-container">
       {/* Left Side: Login Form */}
       <div className="login-left">
-        <h2 className="title">MASUK</h2>
-        <form onSubmit={handleSubmit} className="form">
-          <label>Email</label>
+        <h1 className="login-title">MASUK</h1>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email" className="login-label">
+            Email
+          </label>
           <input
             type="email"
             name="email"
+            id="email"
             placeholder="Masukkan Email"
+            className="login-input"
             required
           />
 
-          <label>Kata Sandi</label>
+          <label htmlFor="password" className="login-label">
+            Kata Sandi
+          </label>
           <input
             type="password"
             name="password"
+            id="password"
             placeholder="Masukkan Kata Sandi"
+            className="login-input"
             required
           />
 
-          <button type="submit" className="login-button" disabled={loading}>
-            {loading ? "Loading..." : "Masuk"} {/* Show loading text while authenticating */}
+          <button
+            type="submit"
+            className="login-button"
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Masuk"}
           </button>
 
-          {/* Display error message if any */}
-          {error && <div className="error-message">{error}</div>}
-
-          <div className="options">
-            <Link to="/forgot-password" className="forgot-password">
-              Lupa kata sandi?
-            </Link>
-            <span className="register">
-              Belum punya akun?{" "}
-              <Link to="/register">
-                <strong>Daftar</strong>
-              </Link>
-            </span>
-          </div>
+          {error && <p className="error-message">{error}</p>}
         </form>
+
+        <div className="login-footer">
+          <Link to="/forgot-password" className="forgot-password">
+            Lupa kata sandi?
+          </Link>
+          <span>
+            Belum punya akun?{" "}
+            <Link to="/register" className="register-link">
+              <strong>Daftar</strong>
+            </Link>
+          </span>
+        </div>
       </div>
 
       {/* Right Side: Information */}
       <div className="login-right">
         <div className="image-placeholder">
-          <span>Gambar</span> {/* Placeholder for image */}
+          <img src={Medali}/>
         </div>
         <div className="info">
           <h3>Sistem Informasi Profil dan Talenta Mahasiswa</h3>

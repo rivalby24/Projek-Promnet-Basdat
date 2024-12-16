@@ -11,43 +11,39 @@
   
   .register-container {
     display: flex;
+    width: 100vw;
     height: 100vh;
+    margin: 0;
+    padding: 70px;
+
   }
   
   .register-left {
     flex: 1;
-    background-color: #555;
+    background-color: #AA633D;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
     text-align: center;
+    padding: 20px;
+    border-radius: 20px;
   }
   
-  .register-image {
-    width: 250px;
-    height: 250px;
-    background-color: #ccc;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
+  .register-image img{
+    width: 200px;
   }
   
   .register-right {
     flex: 1;
-    background-color: #fff;
+    background-color: #F4B779;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px;
-    text-align: center;
+    padding: 20px;
+    border-radius: 20px;
   }
   
   .register-right h2 {
@@ -73,7 +69,7 @@
   
   .register-form button {
     padding: 10px;
-    background-color: #555;
+    background-color: #AA633D;
     color: white;
     border: none;
     border-radius: 5px;
@@ -82,7 +78,7 @@
   }
   
   .register-form button:hover {
-    background-color: #333;
+    background-color: #aa633dd5;
   }
   
   .register-right p {
@@ -91,12 +87,13 @@
   }
   
   .login-link {
-    color: #007bff;
+    color: #fff;
     text-decoration: none;
   }
   
   .login-link:hover {
     text-decoration: underline;
+    color: #838383;
   }
   
   .semester-input small {

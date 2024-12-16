@@ -4,17 +4,21 @@
     width: 100vw;
     height: 100vh;
     margin: 0;
+    padding: 70px;
+
   }
   
   /* Bagian kiri (form login) */
   .login-left {
     flex: 1;
-    background-color: #e0e0e0;
+    background-color: #F4B779;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    border-radius: 20px;
+    margin-left: 20px;
   }
   
   .title {
@@ -44,12 +48,13 @@
   .login-button {
     width: 100%;
     padding: 10px;
-    background-color: #333;
+    background-color: #AA633D;
     color: white;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    margin-top: 30px;
   }
   
   .login-button:hover {
@@ -78,7 +83,7 @@
   /* Bagian kanan (informasi dan gambar) */
   .login-right {
     flex: 1;
-    background-color: #555;
+    background-color: #AA633D;
     color: white;
     display: flex;
     flex-direction: column;
@@ -86,17 +91,9 @@
     align-items: center;
     text-align: center;
     padding: 20px;
+    border-radius: 20px;
   }
   
-  .image-placeholder {
-    width: 200px;
-    height: 200px;
-    background-color: #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
   
   .image-placeholder span {
     color: black;
@@ -111,3 +108,16 @@
     font-size: 14px;
   }
   
+  .login-footer {
+    margin-top: 20px;
+  }
+
+  .login-footer span a{
+    color: #fff;
+  }
+
+  .image-placeholder img {
+    width: 200px; /* Atur lebar gambar */
+    height: auto; /* Tinggi mengikuti aspek rasio */
+    object-fit: contain; /* Menjaga aspek gambar tetap proporsional */
+  }

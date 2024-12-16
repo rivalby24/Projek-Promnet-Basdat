@@ -52,7 +52,42 @@ class ProgramStudiDetailView(RetrieveAPIView):
     queryset = ProgramStudi.objects.all()
     serializer_class = ProgramStudiSerializer
 
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]  # Only accessible to authenticated users
+
+    def get(self, request, *args, **kwargs):
+        # Customize response to include a message if needed
+        users = self.get_queryset()
+        serializer = self.serializer_class(users, many=True)
+        return Response({
+            "message": "Daftar semua pengguna yang sudah terdaftar.",
+            "data": serializer.data
+        }, status=status.HTTP_200_OK)
+
+class UserUpdateView(generics.UpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, *args, **kwargs):
+        """
+        Memperbarui informasi pengguna
+        """
+        pk = kwargs.get('pk')
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.serializer_class(user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 # Dashboard view, protected by authentication
+
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def dashboard(request):

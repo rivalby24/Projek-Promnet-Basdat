@@ -1,6 +1,7 @@
 import React from "react";
 import '../styles/homepage.css';
-
+import search from "../assets/search.png";
+import fotoprofil from "../assets/profil.png";
 function Homepage() {
   return (
     <>
@@ -15,7 +16,7 @@ function Homepage() {
                 placeholder="Kata Kunci: Nama Mahasiswa/Fakultas"
               />
               <button>
-                <img src="search-icon.png" alt="Ikon Pencarian" />
+                <img src={search} />
               </button>
             </div>
           </div>
@@ -31,35 +32,39 @@ function Homepage() {
       <div className="container">
         <div className="header">
           <h1>Prestasi Mahasiswa Terkini</h1>
-        </div>
-        <div className="achievements">
+          <div className="achievements">
           <AchievementCard
-            imgSrc="https://via.placeholder.com/80"
+            imgSrc={fotoprofil}
             name="Muhammad Rivaldy"
             amount="2300000"
             event="International Data Olympics"
           />
           <AchievementCard
-            imgSrc="https://via.placeholder.com/80"
+            imgSrc={fotoprofil}
             name="Muhammad Syahrul R."
             amount="2300000"
             event="International Sport Parade"
           />
           <AchievementCard
-            imgSrc="https://via.placeholder.com/80"
+            imgSrc={fotoprofil}
             name="Naufal Fadhilah"
             amount="2300000"
             event="Web Design Parade"
           />
+          
         </div>
-        <div className="view-more">
+         <div className="view-more">
           <a href="#">Lihat selengkapnya...</a>
         </div>
+        </div>
+        
+       
 
         {/* Bagian Statistik */}
         <div className="statistics">
-          <h2>Statistik Mahasiswa Berprestasi</h2>
+          
           <div className="stat-cards">
+            <h2>Statistik <br />Mahasiswa Berprestasi</h2>
             <StatCard faculty="Fakultas Komputer" count="10,980 orang" />
             <StatCard faculty="Fakultas Matematika" count="21,011 orang" />
             <StatCard faculty="Fakultas Seni" count="29,001 orang" />
@@ -67,11 +72,6 @@ function Homepage() {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="w-100 text-center mt-5 py-3 bg-dark text-white">
-        <p>&copy; Company 2024</p>
-      </footer>
     </>
   );
 }

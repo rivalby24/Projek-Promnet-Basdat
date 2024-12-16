@@ -1,0 +1,28 @@
+.about-tab {
+    display: flex;
+    flex-direction: column; /* Mengatur arah flex menjadi kolom */
+    align-items: center; /* Mengatur item agar berada di tengah */
+    padding: 300px; /* Padding di luar kotak */
+}
+  
+.about-box {
+    background-color: white; /* Warna latar belakang putih */
+    padding: 20px; /* Padding di dalam kotak */
+    border-radius: 10px; /* Sudut melengkung */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bayangan untuk efek kedalaman */
+    width: calc(100% - 40px); /* Lebar 100% dikurangi padding horizontal (20px di kiri dan kanan) */
+    max-width: 800px; /* Lebar maksimum kotak */
+    text-align: left; /* Rata kiri untuk teks */
+    margin-bottom: 20px; /* Jarak antara kotak dan teks di bawahnya */
+}
+  
+.about-description {
+    width: calc(100% - 40px); /* Lebar 100% dikurangi padding horizontal (20px di kiri dan kanan) */
+    max-width: 800px; /* Lebar maksimum untuk deskripsi */
+    text-align: left; /* Rata kiri untuk teks */
+}
+
+.about-box h2 {
+  font-family: 'bahnscrift', sans-serif;
+  font-weight: bold;
+}
