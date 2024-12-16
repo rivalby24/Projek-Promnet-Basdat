@@ -41,7 +41,7 @@ function Homepage() {
           />
           <AchievementCard
             imgSrc={fotoprofil}
-            name="Muhammad Syahrul R."
+            name="Mochammad Syahrul R."
             amount="2300878"
             event="International Sport Parade"
           />
