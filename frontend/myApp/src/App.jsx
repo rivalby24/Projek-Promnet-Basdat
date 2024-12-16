@@ -28,7 +28,7 @@ function App() {
                         element={
                             <PrivateRoute
                                 element={<Dashboard />}
-                                allowedRoles={["Pendidikan Ilmu Komputer", "Ilmu Komputer"]}
+                                allowedRoles={["Mahasiswa"]}
                             />
                         }
                     />

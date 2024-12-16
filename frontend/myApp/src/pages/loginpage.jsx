@@ -1,34 +1,38 @@
 import React, { useContext } from "react";
-import { Navigate, Link } from "react-router-dom"; // Import Navigate untuk redirection
-import AuthContext from "../context/AuthContext";
-import "../styles/loginpage.css"; // Pastikan ada file CSS yang sesuai
+import { Navigate, Link } from "react-router-dom"; // Import Navigate for redirection
+import AuthContext from "../context/AuthContext"; // AuthContext to manage auth state
+import "../styles/loginpage.css"; // Importing CSS for styling
 
 function Loginpage() {
-  const { loginUser, user } = useContext(AuthContext); // Ambil user dari AuthContext
+  const { loginUser, user, loading, error } = useContext(AuthContext); // Use context to get login state and error
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    email.length > 0 && loginUser(email, password);
-
-    console.log(email, password);
+    // Ensure email and password are not empty before attempting login
+    if (email.length > 0 && password.length > 0) {
+      loginUser(email, password); // Call loginUser to handle authentication
+    }
   };
 
-  // Jika user sudah login, redirect ke halaman lain
+  // If user is already logged in, navigate to the appropriate dashboard based on their role
   if (user) {
-    if (user.program_studi === "Admin") {
-      return <Navigate to="/admindashboard" replace />;
+    if (user.role === "Admin") {
+      return <Navigate to="/admindashboard" replace />; // Admin redirected to admin dashboard
+    } else if (user.role === "Mahasiswa") {
+      return <Navigate to="/dashboard" replace />; // Mahasiswa (student) redirected to student dashboard
+    } else if (user.role === "Alumni") {
+      return <Navigate to="/dashboard" replace />; // Alumni redirected to alumni dashboard
     } else {
-      return <Navigate to="/dashboard" replace />;
+      return <Navigate to="/" replace />; // Default route if no matching role
     }
   }
-  
 
   return (
     <div className="login-container">
-      {/* Bagian Kiri: Form Login */}
+      {/* Left Side: Login Form */}
       <div className="login-left">
         <h2 className="title">MASUK</h2>
         <form onSubmit={handleSubmit} className="form">
@@ -48,9 +52,12 @@ function Loginpage() {
             required
           />
 
-          <button type="submit" className="login-button">
-            Masuk
+          <button type="submit" className="login-button" disabled={loading}>
+            {loading ? "Loading..." : "Masuk"} {/* Show loading text while authenticating */}
           </button>
+
+          {/* Display error message if any */}
+          {error && <div className="error-message">{error}</div>}
 
           <div className="options">
             <Link to="/forgot-password" className="forgot-password">
@@ -66,10 +73,10 @@ function Loginpage() {
         </form>
       </div>
 
-      {/* Bagian Kanan: Informasi */}
+      {/* Right Side: Information */}
       <div className="login-right">
         <div className="image-placeholder">
-          <span>Gambar</span>
+          <span>Gambar</span> {/* Placeholder for image */}
         </div>
         <div className="info">
           <h3>Sistem Informasi Profil dan Talenta Mahasiswa</h3>

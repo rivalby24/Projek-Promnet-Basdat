@@ -1,12 +1,22 @@
-from api.models import User, MahasiswaProfile
+from api.models import User, MahasiswaProfile, Fakultas, ProgramStudi
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 
+class FakultasSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fakultas
+        fields = ['id', 'nama']
+    
+class ProgramStudiSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProgramStudi
+        fields = ['id', 'fakultas','nama']
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'full_name', 'username', 'email', 'nim', 'program_studi', 'semester']
+        fields = ['id', 'full_name', 'username', 'email', 'role', 'nim', 'program_studi', 'semester']
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -14,12 +24,15 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
 
-        # Adding custom fields from the User model
+        # Add user-related fields to the token
         token['full_name'] = user.full_name
         token['username'] = user.username
         token['email'] = user.email
+        token['role'] = user.role
         token['nim'] = user.nim
-        token['program_studi'] = user.program_studi
+        # Serialize related fields to avoid non-serializable objects in the token
+        token['fakultas'] = user.fakultas.id if user.fakultas else None
+        token['program_studi'] = user.program_studi.id if user.program_studi else None
         token['semester'] = user.semester
         token['verified'] = getattr(user, 'verified', False)  # Safely handle missing fields
 
@@ -31,7 +44,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['full_name', 'username', 'email', 'nim', 'program_studi', 'semester', 'password', 'password2']
+        fields = ['full_name', 'username', 'email', 'role', 'nim', 'fakultas', 'program_studi', 'semester','password', 'password2']
 
     def validate(self, data):
         if data['password'] != data['password2']:
@@ -44,7 +57,9 @@ class RegisterSerializer(serializers.ModelSerializer):
             full_name=validated_data['full_name'],
             username=validated_data['username'],
             email=validated_data['email'],
+            role=validated_data['role'],
             nim=validated_data['nim'],
+            fakultas=validated_data['fakultas'],
             program_studi=validated_data['program_studi'],
             semester=validated_data['semester'],
             password=validated_data['password'],

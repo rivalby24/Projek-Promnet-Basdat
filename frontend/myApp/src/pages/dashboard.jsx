@@ -7,15 +7,16 @@ function Dashboard() {
   const [res, setRes] = useState('');
   const api = useAxios();
   const token = localStorage.getItem('authTokens');
-  const [programStudi, setProgramStudi] = useState(null);
+  const [Role, setRole] = useState(null);
 
-  let nim, username, program_studi, full_name, semester, image;
+  let nim, username, role, program_studi, full_name, semester, image;
 
   if (token) {
     const decode = jwtDecode(token);
     nim = decode.nim;
     username = decode.username;
     full_name = decode.full_name;
+    role = decode.role;
     program_studi = decode.program_studi;
     semester = decode.semester;
     image = decode.image;
@@ -24,12 +25,12 @@ function Dashboard() {
   useEffect(() => {
     if (token) {
       const decode = jwtDecode(token);
-      setProgramStudi(decode.program_studi);
+      setRole(decode.role);
     }
   }, [token]);
 
   // Redirect jika program_studi adalah "admin"
-  if (programStudi === 'admin') {
+  if (role === 'Admin') {
     return <Navigate to="/admindashboard" replace />;
   }
 

@@ -1,19 +1,47 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import "../styles/registerpage.css"
+import "../styles/registerpage.css";
 
 function Registerpage() {
   const [full_name, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [role, setRole] = useState(""); // State untuk role
   const [nim, setNim] = useState("");
+  const [fakultas, setFakultas] = useState("");
   const [program_studi, setProgramStudi] = useState("");
   const [semester, setSemester] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [fakultasList, setFakultasList] = useState([]);
+  const [programStudiList, setProgramStudiList] = useState([]);
 
   const { registerUser } = useContext(AuthContext);
+
+  // Fetch fakultas dynamically from the backend
+  useEffect(() => {
+    const fetchFakultas = async () => {
+      const response = await fetch("http://127.0.0.1:8000/api/fakultas/"); // Endpoint untuk daftar fakultas
+      const data = await response.json();
+      setFakultasList(data);
+    };
+    fetchFakultas();
+  }, []);
+
+  // Fetch program studi based on selected fakultas
+  useEffect(() => {
+    if (fakultas) {
+      const fetchProgramStudi = async () => {
+        const response = await fetch(`http://127.0.0.1:8000/api/fakultas/${fakultas}/programstudi/`); // Endpoint untuk program studi berdasarkan fakultas
+        const data = await response.json();
+        setProgramStudiList(data);
+      };
+      fetchProgramStudi();
+    } else {
+      setProgramStudiList([]); // Reset program studi list jika fakultas diubah
+    }
+  }, [fakultas]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +49,7 @@ function Registerpage() {
       alert("Passwords do not match.");
       return;
     }
-    registerUser(full_name, username, email, nim, program_studi, semester, password, password2);
+    registerUser(full_name, username, email, role, nim, fakultas, program_studi, semester, password, password2);
   };
 
   return (
@@ -39,7 +67,7 @@ function Registerpage() {
         <form onSubmit={handleSubmit} className="register-form">
           <input
             type="text"
-            placeholder="Full Name"
+            placeholder="Nama Lengkap"
             onChange={(e) => setFullName(e.target.value)}
             required
           />
@@ -55,25 +83,55 @@ function Registerpage() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+
+          <select onChange={(e) => setRole(e.target.value)} value={role} required>
+            <option value="" disabled>Status</option>
+            <option value="Mahasiswa">Mahasiswa</option>
+            <option value="Alumni">Alumni</option>
+          </select>
+
           <input
             type="text"
             placeholder="NIM"
             onChange={(e) => setNim(e.target.value)}
             required
           />
-          <select onChange={(e) => setProgramStudi(e.target.value)} defaultValue="" required>
-            <option value="" disabled>
-              Pilih Program Studi
-            </option>
-            <option value="Pendidikan Ilmu Komputer">Pendidikan Ilmu Komputer</option>
-            <option value="Ilmu Komputer">Ilmu Komputer</option>
+
+          <select onChange={(e) => setFakultas(e.target.value)} value={fakultas} required>
+            <option value="" disabled>Pilih Fakultas</option>
+            {fakultasList.map((fak) => (
+              <option key={fak.id} value={fak.id}>
+                {fak.nama}
+              </option>
+            ))}
           </select>
-          <input
-            type="number"
-            placeholder="Semester"
-            onChange={(e) => setSemester(e.target.value)}
-            required
-          />
+
+          <select 
+            onChange={(e) => setProgramStudi(e.target.value)} 
+            value={program_studi} 
+            required 
+            disabled={!fakultas} // Disable if fakultas is not selected
+          >
+            <option value="" disabled>Pilih Program Studi</option>
+            {programStudiList.map((prodi) => (
+              <option key={prodi.id} value={prodi.id}>
+                {prodi.nama}
+              </option>
+            ))}
+          </select>
+
+          {/* Semester Input with additional text */}
+          <div className="semester-input">
+            <input
+              type="number"
+              placeholder="Semester"
+              onChange={(e) => setSemester(e.target.value)}
+              min="1"
+              disabled={role === "Alumni"}  // Disable semester input if Alumni is selected
+              required
+            />
+          </div>
+
           <input
             type="password"
             placeholder="Password"

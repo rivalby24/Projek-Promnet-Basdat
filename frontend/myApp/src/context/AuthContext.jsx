@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.getItem("authTokens") ? jwtDecode(localStorage.getItem("authTokens")) : null
     );
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null); // Add error state
     const navigate = useNavigate();
 
     const showAlert = (title, icon) => {
@@ -36,40 +37,42 @@ export const AuthProvider = ({ children }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
             });
-    
+
             const data = await response.json();
-    
+
             if (response.status === 200) {
                 setAuthTokens(data);
                 const decodedUser = jwtDecode(data.access);
                 setUser(decodedUser);
                 localStorage.setItem("authTokens", JSON.stringify(data));
-    
+
+                // Log the user data to see what it contains
+                console.log("Decoded User:", decodedUser);
+
                 // Navigasi berdasarkan program_studi (role)
-                if (decodedUser.program_studi === "Admin") {
+                if (decodedUser.role === "Admin") {
                     navigate("/admindashboard");
-                } else if (
-                    decodedUser.program_studi === "Pendidikan Ilmu Komputer" || 
-                    decodedUser.program_studi === "Ilmu Komputer"
-                ) {
+                } else if (decodedUser.role === "Mahasiswa") {
+                    navigate("/dashboard");
+                } else if (decodedUser.role === "Alumni") {
                     navigate("/dashboard");
                 } else {
-                    navigate("/");
+                    navigate("/"); // Default route
                 }
-    
+
                 showAlert("Login Successful", "success");
             } else {
                 showAlert("Invalid Email or Password", "error");
+                setError("Invalid Email or Password");
             }
         } catch (error) {
             console.error("Error during login:", error);
             showAlert("An error occurred during login", "error");
+            setError("An error occurred during login");
         }
-        setUser(decodedToken);
     };
-    
 
-    const registerUser = async (full_name, username, email, nim, program_studi, semester, password, password2) => {
+    const registerUser = async (full_name, username, email, role, nim, fakultas, program_studi, semester, password, password2) => {
         if (!email.endsWith("@upi.edu")) {
             showAlert("Email harus menggunakan domain @upi.edu.", "error");
             return;
@@ -78,7 +81,8 @@ export const AuthProvider = ({ children }) => {
         if (nim.length !== 7 || isNaN(nim)) {
             showAlert("NIM harus terdiri dari 7 angka.", "error");
             return;
-          }
+        }
+
         try {
             const response = await fetch("http://127.0.0.1:8000/api/register/", {
                 method: "POST",
@@ -87,17 +91,19 @@ export const AuthProvider = ({ children }) => {
                     full_name,
                     username,
                     email,
+                    role,
                     nim,
+                    fakultas,
                     program_studi,
                     semester,
                     password,
                     password2,
                 }),
             });
-    
+
             const data = await response.json();
             console.log("Response data:", data);
-    
+
             if (response.status === 201) {
                 navigate("/login");
                 showAlert("Registration Successful. Please login.", "success");
@@ -109,7 +115,6 @@ export const AuthProvider = ({ children }) => {
             showAlert("An error occurred during registration", "error");
         }
     };
-    
 
     const logoutUser = () => {
         setAuthTokens(null);
@@ -145,7 +150,9 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (authTokens) {
-            setUser(jwtDecode(authTokens.access));
+            const decoded = jwtDecode(authTokens.access);
+            console.log("Decoded JWT on load:", decoded); // Log to verify contents
+            setUser(decoded);
         }
         setLoading(false);
     }, [authTokens]);
@@ -165,6 +172,7 @@ export const AuthProvider = ({ children }) => {
         loginUser,
         registerUser,
         logoutUser,
+        error, // Add error to context
     };
 
     return (

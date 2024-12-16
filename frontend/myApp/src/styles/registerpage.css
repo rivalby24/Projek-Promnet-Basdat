@@ -99,3 +99,10 @@
     text-decoration: underline;
   }
   
+  .semester-input small {
+    font-size: 0.8rem;
+    color: #888;
+    display: block;
+    margin-top: 5px;
+  }
+  

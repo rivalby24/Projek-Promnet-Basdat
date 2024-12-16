@@ -11,7 +11,7 @@ const PrivateRoute = ({ element, allowedRoles }) => {
     }
 
     // Jika role user tidak cocok, arahkan ke halaman Unauthorized
-    if (allowedRoles && !allowedRoles.includes(user.program_studi)) {
+    if (allowedRoles && !allowedRoles.includes(user.role)) {
         return <Navigate to="/" />;
     }
 
