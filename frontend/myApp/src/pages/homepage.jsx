@@ -35,20 +35,20 @@ function Homepage() {
           <div className="achievements">
           <AchievementCard
             imgSrc={fotoprofil}
-            name="Muhammad Rivaldy"
-            amount="2300000"
+            name="Muhammad Rivalby"
+            amount="2307068"
             event="International Data Olympics"
           />
           <AchievementCard
             imgSrc={fotoprofil}
             name="Muhammad Syahrul R."
-            amount="2300000"
+            amount="2300878"
             event="International Sport Parade"
           />
           <AchievementCard
             imgSrc={fotoprofil}
             name="Naufal Fadhilah"
-            amount="2300000"
+            amount="2309562"
             event="Web Design Parade"
           />
           
