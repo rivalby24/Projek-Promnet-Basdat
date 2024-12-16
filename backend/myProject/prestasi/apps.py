@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class TalentaConfig(AppConfig):
+class PrestasiConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'talenta'
+    name = 'prestasi'
