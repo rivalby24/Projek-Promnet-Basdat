@@ -3,35 +3,31 @@ from api.models import MahasiswaProfile, User, Fakultas, ProgramStudi
 from api.serializer import UserSerializer, MyTokenObtainPairSerializer, RegisterSerializer, FakultasSerializer, ProgramStudiSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework import generics, status, serializers
+from rest_framework import generics, status, serializers, viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 from rest_framework.exceptions import NotFound
 
-# Token View for JWT Authentication
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
-# Register View for new users
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
 
-# Fakultas View for listing all Fakultas and creating new Fakultas
-class FakultasView(generics.ListCreateAPIView):  # Changed to ListCreateAPIView
+class FakultasView(generics.ListCreateAPIView):  
     queryset = Fakultas.objects.all()
     serializer_class = FakultasSerializer
 
-# Fakultas Detail View for fetching details of a specific Fakultas
+
 class FakultasDetailView(RetrieveAPIView):
     queryset = Fakultas.objects.all()
     serializer_class = FakultasSerializer
 
-# Program Studi View based on Fakultas, now using ListCreateAPIView to create new Program Studi
-class ProgramStudiByFakultasView(generics.ListCreateAPIView):  # Changed to ListCreateAPIView
+class ProgramStudiByFakultasView(generics.ListCreateAPIView):  
     serializer_class = ProgramStudiSerializer
     
     def get_queryset(self):

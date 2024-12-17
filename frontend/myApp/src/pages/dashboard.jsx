@@ -99,6 +99,7 @@ function Dashboard() {
                 <p className="card-text">
                   <strong>Username:</strong> {userDetails.username} <br />
                   <strong>NIM:</strong> {userDetails.nim} <br />
+                  <strong>Fakultas:</strong> {userDetails.fakultas} <br />
                   <strong>Program Studi:</strong> {userDetails.program_studi} <br />
                   <strong>Semester:</strong> {userDetails.semester}
                 </p>

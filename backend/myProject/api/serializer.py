@@ -30,11 +30,10 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['email'] = user.email
         token['role'] = user.role
         token['nim'] = user.nim
-        # Serialize related fields to avoid non-serializable objects in the token
         token['fakultas'] = user.fakultas.nama
         token['program_studi'] = user.program_studi.nama
         token['semester'] = user.semester
-        token['verified'] = getattr(user, 'verified', False)  # Safely handle missing fields
+        token['verified'] = getattr(user, 'verified', False) 
 
         return token
 
@@ -68,11 +67,9 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 def to_representation(self, instance):
         representation = super().to_representation(instance)
-        
-        # Get fakultas and program_studi names, if they are foreign keys
         if instance.fakultas:
-            representation['fakultas'] = instance.fakultas.name  # assuming the `name` field holds the name
+            representation['fakultas'] = instance.fakultas.name  
         if instance.program_studi:
-            representation['program_studi'] = instance.program_studi.name  # assuming the `name` field holds the name
+            representation['program_studi'] = instance.program_studi.name  
         
         return representation

@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
                     navigate("/"); // Default route
                 }
 
-                showAlert("Login Successful", "success");
+                showAlert("Login Berhasil", "success");
             } else {
                 showAlert("Invalid Email or Password", "error");
                 setError("Invalid Email or Password");
@@ -106,12 +106,12 @@ export const AuthProvider = ({ children }) => {
 
             if (response.status === 201) {
                 navigate("/login");
-                showAlert("Registration Successful. Please login.", "success");
+                showAlert("Registrasi Berhasil, Silahkan Login", "success");
             } else {
-                showAlert(data.detail || "An error occurred during registration", "error");
+                showAlert(data.detail || "Terjadi Error Ketika Melakukan Registrasi", "error");
             }
         } catch (error) {
-            console.error("Error during registration:", error);
+            console.error("Error Saat Registrasi: ", error);
             showAlert("An error occurred during registration", "error");
         }
     };
@@ -121,7 +121,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         localStorage.removeItem("authTokens");
         navigate("/login");
-        showAlert("You have been logged out", "success");
+        showAlert("Anda Telah Log Out", "success");
     };
 
     const refreshAuthToken = async () => {
